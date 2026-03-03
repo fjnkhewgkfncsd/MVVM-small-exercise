@@ -7,8 +7,8 @@ import '../../../states/player_state.dart';
 import '../../../states/settings_state.dart';
 import '../../../theme/theme.dart';
 
-class LibraryScreen extends StatelessWidget {
-  const LibraryScreen({super.key});
+class LibraryContent extends StatelessWidget {
+  const LibraryContent({super.key});
 
   @override
   Widget build(BuildContext context) {
