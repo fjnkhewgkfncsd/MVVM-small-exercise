@@ -11,7 +11,6 @@ class LibraryViewModel extends ChangeNotifier {
   List<Song> _songs = [];
 
   List<Song> get songs => _songs;
-  Song? get currentSong => playerState.currentSong;
 
   LibraryViewModel({required this.songRepo, required this.playerState}) {
     playerState.addListener(onPlayerStateChanged);
@@ -23,7 +22,7 @@ class LibraryViewModel extends ChangeNotifier {
   }
 
   bool isPlaying(Song song) {
-    return currentSong == song;
+    return playerState.currentSong == song;
   }
 
   void start(Song song) {

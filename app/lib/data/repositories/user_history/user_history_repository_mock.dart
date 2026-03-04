@@ -1,14 +1,12 @@
 import './user_history_repository.dart';
-import '../../../model/songs/song.dart';
 
 class UserHistoryRepositoryMock extends UserHistoryRepository {
   @override
-  List<Song> fetchRecentListenedSongs() {
+  List<String> fetchRecentListenedSongs() {
     return [];
   }
-
   @override
-  void addToRecentListenedSongs(Song song) {
+  void addToRecentListenedSongs(String songId) {
     print('added successfully to Recent listened songs');
   }
 }
