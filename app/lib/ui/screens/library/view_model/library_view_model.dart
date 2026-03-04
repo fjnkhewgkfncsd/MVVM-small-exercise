@@ -37,4 +37,10 @@ class LibraryViewModel extends ChangeNotifier {
   void onPlayerStateChanged() {
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    playerState.removeListener(onPlayerStateChanged);
+    super.dispose();
+  }
 }
