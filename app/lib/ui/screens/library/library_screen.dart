@@ -10,7 +10,7 @@ class LibraryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ChangeNotifierProvider(
       create: (_) => LibraryViewModel(
         playerState: context.read<PlayerState>(),
         songRepo: context.read<SongRepository>(),

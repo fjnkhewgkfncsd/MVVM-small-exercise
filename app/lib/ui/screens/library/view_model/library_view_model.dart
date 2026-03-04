@@ -29,6 +29,10 @@ class LibraryViewModel extends ChangeNotifier {
     playerState.start(song);
   }
 
+  void toggleSong(Song song) {
+    isPlaying(song) ? stop() : start(song);
+  }
+
   void stop() {
     playerState.stop();
   }

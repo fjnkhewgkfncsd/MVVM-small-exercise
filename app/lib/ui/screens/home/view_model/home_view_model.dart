@@ -22,10 +22,10 @@ class HomeViewModel extends ChangeNotifier {
   late List<Song> _songs;
   late List<String> _recentListenedSongs;
 
-  List<Song> get songs => _songs;
-  List<Song> get recentSong => convertToSongObject()
-      .where((song) => song == _playerState.currentSong)
-      .toList();
+  List<Song> get recentSongs => _songs;
+  List<Song> get recentSong => convertToSongObject();
+  List<Song> get suggestionSongs =>
+      _songs.where((song) => song != _playerState.currentSong).toList();
 
   void init() {
     _songs = _songRepo.fetchSongs();
@@ -33,19 +33,45 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleSong(Song song) {
+    if (isPlaying(song)) {
+      stop();
+    } else {
+      start(song);
+    }
+  }
+
   void onPlayerStateChanged() {
     notifyListeners();
   }
 
-  List<Song> convertToSongObject(){
+  bool isPlaying(Song song) {
+    return _playerState.currentSong == song;
+  }
+
+  void start(Song song) {
+    _playerState.start(song);
+  }
+
+  void stop() {
+    _playerState.stop();
+  }
+
+  List<Song> convertToSongObject() {
     List<Song> recentSongs = [];
-    for(String id in _recentListenedSongs){
-      for(Song song in songs){
-        if(song.id == id){
+    for (String id in _recentListenedSongs) {
+      for (Song song in _songs) {
+        if (song.id == id) {
           recentSongs.add(song);
         }
       }
     }
     return recentSongs;
+  }
+
+  @override
+  void dispose() {
+    _playerState.removeListener(onPlayerStateChanged);
+    super.dispose();
   }
 }

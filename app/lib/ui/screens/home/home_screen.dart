@@ -15,12 +15,12 @@ class HomeScreen extends StatelessWidget {
     PlayerState playerstate = context.read<PlayerState>();
     UserHistoryRepository userHistoryRepo = context
         .read<UserHistoryRepository>();
-    return Provider(
+    return ChangeNotifierProvider(
       create: (_) => HomeViewModel(
         userHistoryRepo: userHistoryRepo,
         songRepo: songRepo,
         playerState: playerstate,
-      ),
+      )..init(),
       child: HomeContent(),
     );
   }

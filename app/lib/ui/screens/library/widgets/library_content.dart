@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../data/repositories/songs/song_repository.dart';
 import '../../../../model/songs/song.dart';
-import '../../../states/player_state.dart';
 import '../../../states/settings_state.dart';
 import '../../../theme/theme.dart';
 import '../view_model/library_view_model.dart';
@@ -33,9 +31,7 @@ class LibraryContent extends StatelessWidget {
               itemBuilder: (context, index) => SongTile(
                 song: libraryViewModel.songs[index],
                 isPlaying: libraryViewModel.isPlaying(libraryViewModel.songs[index]),
-                onTap: () {
-                  libraryViewModel.start(libraryViewModel.songs[index]);
-                },
+                onTap: () => libraryViewModel.toggleSong(libraryViewModel.songs[index])
               ),
             ),
           ),
